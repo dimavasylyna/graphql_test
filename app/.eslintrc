@@ -1,0 +1,70 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-var": "error",
+    "curly": [
+      2,
+      "all"
+    ],
+    "keyword-spacing": [
+      2,
+      {}
+    ],
+    "space-infix-ops": 2,
+    "space-unary-ops": [
+      1,
+      {
+        "nonwords": false,
+        "overrides": {
+          "!": false
+        }
+      }
+    ],
+    "comma-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "no-implicit-coercion": [
+      2,
+      {
+        "boolean": false,
+        "string": true,
+        "number": false
+      }
+    ],
+    "no-unused-vars": "error",
+    "no-with": 2,
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 1
+      }
+    ],
+    "brace-style": [
+      2,
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "eol-last": 2,
+    "space-before-function-paren": [
+      2,
+      "never"
+    ]
+  }
+}
