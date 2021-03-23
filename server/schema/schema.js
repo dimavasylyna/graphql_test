@@ -63,13 +63,13 @@ const resolvers = {
         getAllFolders: () => {
             return folders;
         },
-        getFolder: ({id}) => {
+        getFolder: (parent, { id }) => {
             return folders.find(folder => folder.id == id);
         },
         getAllWords: () => {
             return words;
         },
-        getWord: ({id}) => {
+        getWord: (parent, { id }) => {
             return words.find(word => word.id == id);
         },
     },
