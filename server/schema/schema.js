@@ -12,11 +12,20 @@ const typeDefs = `
         folder: Folder
         folderId: ID
     }
+    input FolderInput {
+        name: String
+        id: ID   
+    }
     type Query {
         getAllFolders: [Folder]
         getFolder(id: ID): Folder
         getAllWords: [Word]
         getWord(id: ID): Word
+    }
+    type Mutation {
+        addFolder(input: FolderInput): Folder
+        updateFolder(input: FolderInput): Folder
+        removeFolder(id: ID): Folder
     }
 `;
 
@@ -63,13 +72,13 @@ const resolvers = {
         getAllFolders: () => {
             return folders;
         },
-        getFolder: (parent, { id }) => {
+        getFolder: (_, { id }) => {
             return folders.find(folder => folder.id == id);
         },
         getAllWords: () => {
             return words;
         },
-        getWord: (parent, { id }) => {
+        getWord: (_, { id }) => {
             return words.find(word => word.id == id);
         },
     },
@@ -86,6 +95,22 @@ const resolvers = {
             const wordList = words.filter(word => word.folderId === folder.id);
             return wordList
         }
+    },
+    Mutation: {
+        addFolder(_, {input}) {
+            const folder = {id: input.id, name: input.name};
+            folders.push(folder);
+            return folder;
+        },
+        updateFolder(_, {input}) {
+            const folder = folders.find(folder => folder.id === input.id);
+            folder.name = input.name;
+            return folder;
+        },
+        removeFolder(_, { id }) {
+            const folderIndex = folders.findIndex(folder => folder.id === id);
+            return folders.splice(folderIndex, 1)[0];
+        },
     }
 }
 module.exports = makeExecutableSchema({
